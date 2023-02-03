@@ -253,41 +253,51 @@ public class Lab3P2_AndreaOrtez {
 
                         switch (op) {
                             case 1:
-                                boolean a = false;
-
                                 ListarConcesionarios();
-
                                 System.out.println("Ingrese posición de la concesionaria: ");
                                 int pos = sc.nextInt();
                                 String s = "";
 
                                 for (Vehiculo t : concesionaria.get(pos).getVehiculos()) {
-                                    if (t instanceof Carro) {
-                                        s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
-                                        System.out.println(s);
-                                    }
+                                    s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
+                                    System.out.println(s);
                                 }
 
-                                System.out.println("Ingrese la posición del carro que quiere comprar: ");
+                                System.out.println("Ingrese la posición del vehículo que quiere comprar: ");
                                 int carro = sc.nextInt();
 
-                                if (concesionaria.get(pos).getVehiculos().get(carro) instanceof Carro) {
-                                    a = true;
-                                } else if (false) {
+                                if (carro < concesionaria.size()) {
+                                    ListarClientes();
+                                    System.out.print("Ingrese posición del cliente en cuestión: ");
+                                    int c = sc.nextInt();
+
+                                    if (c < concesionaria.get(pos).getClientes().size()) {
+                                        double precio = (concesionaria.get(pos).getVehiculos().get(carro).getPrecio()) * 107.5;//precio a pagar
+
+                                        if (clientes.get(c).getSaldo() <= precio) {
+                                            double saldot = clientes.get(c).getSaldo();
+                                            saldot -= precio;
+                                            clientes.get(c).setSaldo(saldot);//establecer nuevo saldo
+                                            concesionaria.get(pos).getVehiculos().get(carro).setPrecio(precio);//agregar saldo a la concesionaria
+                                            concesionaria.get(pos).getClientes().add(clientes.get(c));//Agregar cliente a la concesionaria
+                                        } else {
+                                            System.out.println("Lo siento, no posee con el saldo suficiente para realizar esta compra\n");
+                                        }
+                                    }
+                                } else {
                                     System.out.println("La posición no es válida");
                                 }
-
+                            case 2:
                                 ListarClientes();
                                 System.out.print("Ingrese posición del cliente en cuestión: ");
                                 int c = sc.nextInt();
-                                
-                                double precio = (concesionaria.get(pos).getVehiculos().get(carro).getPrecio())*107.5;//precio a pagar
 
-                                if (clientes.get(c).getSaldo() <= precio) {
-                                    double saldot = clientes.get(c).getSaldo();
-                                    saldot-=precio;
-                                    clientes.get(c).setSaldo(saldot);//establecer nuevo saldo
-                                    concesionaria.get(pos).getVehiculos().get(carro).setPrecio(precio);//agregar saldo a la concesionaria
+                                s = "";
+                                if (c<clientes.size()) {
+                                    for (Vehiculo t : clientes.get(c).getVehiculos()) {
+                                    s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
+                                    System.out.println(s);
+                                }
                                 }
                         }
                 }
