@@ -1,7 +1,7 @@
-
 package lab3p2_andreaortez;
 
-public class Camion extends Vehiculo{
+public class Camion extends Vehiculo {
+
     private int volumen, carga, altura;
     private boolean x;
     private String excavadora;
@@ -14,9 +14,9 @@ public class Camion extends Vehiculo{
         this.volumen = volumen;
         this.carga = carga;
         this.altura = altura;
-        if (x==true){
+        if (x == true) {
             excavadora = "Tiene retroexcavadora";
-        }else{
+        } else {
             excavadora = "No tiene retroexcavadora";
         }
     }
@@ -35,6 +35,14 @@ public class Camion extends Vehiculo{
 
     public void setAltura(int altura) {
         this.altura = altura;
+    }
+
+    public boolean isX() {
+        return x;
+    }
+
+    public void setX(boolean x) {
+        this.x = x;
     }
 
     public int getVolumen() {

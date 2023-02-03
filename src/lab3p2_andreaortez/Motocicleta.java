@@ -27,6 +27,14 @@ public class Motocicleta extends Vehiculo {
         this.desplazamiento = desplazamiento;
     }
 
+    public boolean isX() {
+        return x;
+    }
+
+    public void setX(boolean x) {
+        this.x = x;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "Motocicleta{" + "desplazamiento=" + desplazamiento + ", electrica=" + electrica + '}';

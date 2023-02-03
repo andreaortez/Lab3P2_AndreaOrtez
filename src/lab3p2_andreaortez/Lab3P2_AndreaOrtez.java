@@ -51,7 +51,7 @@ public class Lab3P2_AndreaOrtez {
                 }
             } else {
                 switch (opcion) {
-                    case 2:
+                    case 2://Clientes
                         System.out.print("\n1-> Crear\n" + "2-> Listar\n" + "3-> Borrar\n" + "Ingrese su opcion: ");
                         int op = sc.nextInt();
 
@@ -82,7 +82,7 @@ public class Lab3P2_AndreaOrtez {
                                 }
                         }
                         break;
-                    case 3:
+                    case 3://Vehiculo
                         System.out.print("\n1-> Crear\n" + "2-> Listar\n" + "3-> Modificar\n" + "4-> Borrar\n" + "Ingrese su opcion: ");
                         op = sc.nextInt();
 
@@ -103,13 +103,134 @@ public class Lab3P2_AndreaOrtez {
 
                                 System.out.print("Ingrese posición a modificar: ");
                                 int p = sc.nextInt();
+
                                 if (p >= 0 && p < vehiculos.size()) {
                                     switch (t) {
+                                        case 1://Carro
+                                            if (vehiculos.get(p) instanceof Carro) {
+                                                System.out.print("\n0-> Cantidad de puertas\n" + "1-> Velocidad Máxima" + "2-> Descripción de motor\n"
+                                                        + "Ingrese el atributo a modificar: ");
+                                                int ap = sc.nextInt();
 
+                                                System.out.print("Ingrese el dato a modificar: ");
+
+                                                switch (ap) {
+                                                    case 0: {
+                                                        int n = sc.nextInt();
+                                                        ((Carro) vehiculos.get(p)).setPuertas(n);
+                                                    }
+                                                    case 1: {
+                                                        int n = sc.nextInt();
+                                                        ((Carro) vehiculos.get(p)).setVelocidad(n);
+                                                    }
+                                                    case 2: {
+                                                        sc = new Scanner(System.in);
+                                                        String n = sc.nextLine();
+                                                        ((Carro) vehiculos.get(p)).setDescripcion(n);
+                                                    }
+                                                }
+                                            }
+                                        case 2://CAMION
+                                            if (vehiculos.get(p) instanceof Camion) {
+                                                System.out.print("\n0-> Volumen\n" + "1-> Máximo de carga," + "2-> Altura\n" + "3-> Retroexcavadora\n"
+                                                        + "Ingrese el atributo a modificar: ");
+                                                int ap = sc.nextInt();
+
+                                                System.out.print("Ingrese el dato a modificar: ");
+
+                                                switch (ap) {
+                                                    case 0: {
+                                                        int n = sc.nextInt();
+                                                        ((Camion) vehiculos.get(p)).setVolumen(n);
+                                                    }
+                                                    case 1: {
+                                                        int n = sc.nextInt();
+                                                        ((Camion) vehiculos.get(p)).setCarga(n);
+                                                    }
+                                                    case 2: {
+                                                        int n = sc.nextInt();
+                                                        ((Camion) vehiculos.get(p)).setAltura(n);
+                                                    }
+                                                    case 3: {
+                                                        boolean b = true;
+                                                        System.out.print("¿El camión tiene retroexcavadora? [n/s]: ");
+                                                        char resp = sc.next().charAt(0);
+                                                        if (resp == 'n' || resp == 'N') {
+                                                            b = false;
+                                                        }
+                                                        ((Camion) vehiculos.get(p)).setX(b);
+                                                    }
+                                                }
+                                            }
+                                        case 3://BUS
+                                            if (vehiculos.get(p) instanceof Bus) {
+                                                System.out.print("Ingrese la cantidad de pasajeros: ");
+
+                                                int n = sc.nextInt();
+                                                ((Bus) vehiculos.get(p)).setPasajeros(n);
+                                            }
+                                        case 4://MOTO
+                                            if (vehiculos.get(p) instanceof Motocicleta) {
+                                                System.out.print("\n0-> Desplazamiento del motor\n" + "1-> Eléctrica\n"
+                                                        + "Ingrese el atributo a modificar: ");
+                                                int ap = sc.nextInt();
+
+                                                switch (ap) {
+                                                    case 0: {
+                                                        System.out.print("Ingrese el dato a modificar: ");
+                                                        sc = new Scanner(System.in);
+                                                        String n = sc.nextLine();
+                                                        ((Motocicleta) vehiculos.get(p)).setDesplazamiento(n);
+                                                    }
+                                                    case 1: {
+                                                        boolean b = true;
+                                                        System.out.print("¿La motocicleta es eléctrica? [n/s]: ");
+                                                        char resp = sc.next().charAt(0);
+                                                        if (resp == 'n' || resp == 'N') {
+                                                            b = false;
+                                                        }
+                                                        ((Motocicleta) vehiculos.get(p)).setX(b);
+                                                    }
+                                                }
+                                            }
+                                        case 5://BICI
+                                            if (vehiculos.get(p) instanceof Bicicleta) {
+                                                System.out.print("\n0-> Cantidad de puertas\n" + "1-> Velocidad Máxima" + "2-> Tipo\n"
+                                                        + "Ingrese el atributo a modificar: ");
+                                                int ap = sc.nextInt();
+
+                                                System.out.print("Ingrese el dato a modificar: ");
+
+                                                switch (ap) {
+                                                    case 0: {
+                                                        sc = new Scanner(System.in);
+                                                        String n = sc.nextLine();
+                                                        ((Bicicleta) vehiculos.get(p)).setDescripcion(n);
+                                                    }
+                                                    case 1: {
+                                                        int n = sc.nextInt();
+                                                        ((Bicicleta) vehiculos.get(p)).setRadio(n);
+                                                    }
+                                                    case 2: {
+                                                       String tipo="";
+                                                        System.out.print("\n1-> BMX\n" + "2-> De calle\n" + "Ingrese su opcion: ");
+                                                        int n = sc.nextInt();
+                                                        
+                                                        if (n == 1) {
+                                                            tipo = "BMX";
+                                                        } else if (n == 2) {
+                                                            tipo = "De calle";
+                                                        }
+                                                                
+                                                        ((Bicicleta) vehiculos.get(p)).setTipo(tipo);
+                                                    }
+                                                }
+                                            }
                                     }
                                 } else {
                                     System.out.println("La posición dada no es válida\n");
                                 }
+
                             case 4://Borrar
                                 System.out.print("Ingrese posición a modificar: ");
                                 p = sc.nextInt();
@@ -203,7 +324,7 @@ public class Lab3P2_AndreaOrtez {
             System.out.print("\n1-> Carro\n" + "2-> Camion de carga\n" + "3-> Bus\n" + "Ingrese su opcion: ");
             int p = sc.nextInt();
             switch (p) {
-                case 1:
+                case 1://CARRO
                     System.out.print("Cantidad de puertas: ");
                     int cant1 = sc.nextInt();
                     System.out.print("Descripción de motor: ");
@@ -213,7 +334,7 @@ public class Lab3P2_AndreaOrtez {
                     int velocidad = sc.nextInt();
                     Carro car = new Carro(cant1, velocidad, descripcion, color, marca, modelo, año, cantll, precio);
                     return car;
-                case 2:
+                case 2://CAMION
                     boolean b = true;
                     System.out.println("Volumen: ");
                     int volumen = sc.nextInt();
@@ -228,7 +349,7 @@ public class Lab3P2_AndreaOrtez {
                     }
                     Camion c = new Camion(volumen, carga, altura, b, color, marca, modelo, año, cantll, precio);
                     return c;
-                case 3:
+                case 3://BUS
                     System.out.println("Cantidad de pasajeros: ");
                     int pasajeros = sc.nextInt();
                     Bus bus = new Bus(pasajeros, color, marca, modelo, año, cantll, precio);
