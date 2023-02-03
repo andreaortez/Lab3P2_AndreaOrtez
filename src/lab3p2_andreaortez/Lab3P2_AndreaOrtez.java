@@ -8,7 +8,7 @@ public class Lab3P2_AndreaOrtez {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Concesionaria> concesionaria = new ArrayList();
     static ArrayList<Cliente> clientes = new ArrayList();
-    static ArrayList vehiculos = new ArrayList();
+    static ArrayList<Vehiculo> vehiculos = new ArrayList();
 
     public static void main(String[] args) {
         int opcion;
@@ -83,31 +83,39 @@ public class Lab3P2_AndreaOrtez {
                         }
                         break;
                     case 3:
-                        System.out.print("\n1-> Crear\n" + "2-> Listar\n" + "3-> Borrar\n" + "Ingrese su opcion: ");
+                        System.out.print("\n1-> Crear\n" + "2-> Listar\n" + "3-> Modificar\n" + "4-> Borrar\n" + "Ingrese su opcion: ");
                         op = sc.nextInt();
 
                         switch (op) {
                             case 1://Agregar
-                                clientes.add(newCl());
-                                System.out.println("¡CLIENTE CREADO CON ÉXITO!\n");
+                                vehiculos.add(newV());
+                                System.out.println("¡VEHICULO CREADO CON ÉXITO!\n");
                                 break;
                             case 2://Listar
-                                String s = "";
+                                Listar();
+                                break;
+                            case 3: //Modificar
+                                System.out.print("\n1-> Carro\n" + "2-> Camion de carga\n" + "3-> Bus\n" + "4-> Motocicleta\n" + "5-> Bicicleta\n"
+                                        + "Ingrese su opcion: ");
+                                int t = sc.nextInt();
 
-                                if (op >= 0 && op < clientes.size()) {
-                                    for (Cliente t : clientes) {
-                                        s += "\n" + clientes.indexOf(t) + " - " + t + "\n";
-                                        System.out.println(s);
+                                Listar();
+
+                                System.out.print("Ingrese posición a modificar: ");
+                                int p = sc.nextInt();
+                                if (p >= 0 && p < vehiculos.size()) {
+                                    switch (t) {
+
                                     }
                                 } else {
                                     System.out.println("La posición dada no es válida\n");
                                 }
-                            case 3://Borrar
+                            case 4://Borrar
                                 System.out.print("Ingrese posición a modificar: ");
-                                int p = sc.nextInt();
+                                p = sc.nextInt();
 
-                                if (p >= 0 && p < clientes.size()) {
-                                    clientes.remove(p);
+                                if (p >= 0 && p < vehiculos.size()) {
+                                    vehiculos.remove(p);
                                 } else {
                                     System.out.println("La posición dada no es válida\n");
                                 }
@@ -228,5 +236,88 @@ public class Lab3P2_AndreaOrtez {
             }
         }
         return new Vehiculo();
+    }
+
+    static void Listar() {
+        String s = "";
+
+        System.out.print("¿Desea listar algún tipo en específico? [n/s]: ");
+        char resp = sc.next().charAt(0);
+
+        if (resp == 's' || resp == 'S') {
+            System.out.print("\n1-> Carro\n" + "2-> Camion de carga\n" + "3-> Bus\n" + "4-> Motocicleta\n" + "5-> Bicicleta\n"
+                    + "Ingrese su opcion: ");
+            int p = sc.nextInt();
+
+            switch (p) {
+                case 1:
+                    for (Object t : vehiculos) {
+                        if (t instanceof Carro) {
+                            s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                            System.out.println(s);
+                        }
+                    }
+                    break;
+                case 2:
+                    for (Object t : vehiculos) {
+                        if (t instanceof Camion) {
+                            s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                            System.out.println(s);
+                        }
+                    }
+                    break;
+                case 3:
+                    for (Object t : vehiculos) {
+                        if (t instanceof Bus) {
+                            s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                            System.out.println(s);
+                        }
+                    }
+                case 4:
+                    for (Object t : vehiculos) {
+                        if (t instanceof Motocicleta) {
+                            s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                            System.out.println(s);
+                        }
+                    }
+                case 5:
+                    for (Object t : vehiculos) {
+                        if (t instanceof Bicicleta) {
+                            s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                            System.out.println(s);
+                        }
+                    }
+            }
+        } else {
+            for (Object t : vehiculos) {
+                if (t instanceof Carro) {
+                    s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                }
+            }
+
+            for (Object t : vehiculos) {
+                if (t instanceof Camion) {
+                    s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                }
+            }
+
+            for (Object t : vehiculos) {
+                if (t instanceof Bus) {
+                    s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                }
+            }
+
+            for (Object t : vehiculos) {
+                if (t instanceof Motocicleta) {
+                    s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                }
+            }
+            for (Object t : vehiculos) {
+                if (t instanceof Bicicleta) {
+                    s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
+                }
+            }
+            System.out.println(s);
+        }
     }
 }
