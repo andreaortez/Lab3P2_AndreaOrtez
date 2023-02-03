@@ -1,8 +1,6 @@
 
 package lab3p2_andreaortez;
 
-import java.awt.Color;
-
 public class Camion extends Vehiculo{
     private int carga, altura;
     private boolean excavadora;
@@ -10,7 +8,7 @@ public class Camion extends Vehiculo{
     public Camion() {
     }
 
-    public Camion(int carga, int altura, boolean excavadora, Color color, String marca, String modelo, int año, int cantidad, double precio) {
+    public Camion(int carga, int altura, boolean excavadora, String color, String marca, String modelo, int año, int cantidad, double precio) {
         super(color, marca, modelo, año, cantidad, precio);
         this.carga = carga;
         this.altura = altura;

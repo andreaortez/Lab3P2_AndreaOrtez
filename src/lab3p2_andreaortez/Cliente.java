@@ -1,20 +1,21 @@
-
 package lab3p2_andreaortez;
 
 import java.util.ArrayList;
 
 public class Cliente {
-    private int ID, saldo;
+
+    private int ID;
     private String nombre;
-    private ArrayList <Vehiculo> vehiculos = new ArrayList();
+    private ArrayList<Vehiculo> vehiculos = new ArrayList();
+    private double saldo;
 
     public Cliente() {
     }
 
-    public Cliente(int ID, int saldo, String nombre) {
+    public Cliente(int ID, String nombre, double saldo) {
         this.ID = ID;
-        this.saldo = saldo;
         this.nombre = nombre;
+        this.saldo = saldo;
     }
 
     public int getID() {
@@ -25,11 +26,11 @@ public class Cliente {
         this.ID = ID;
     }
 
-    public int getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
@@ -51,6 +52,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "ID=" + ID + ", saldo=" + saldo + ", nombre=" + nombre + ", vehiculos=" + vehiculos + '}';
+        return "Cliente{" + "ID=" + ID + ", nombre=" + nombre + ", vehiculos=" + vehiculos + ", saldo=" + saldo + '}';
     }
 }

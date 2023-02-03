@@ -5,17 +5,18 @@ import java.util.ArrayList;
 
 public class Concesionaria {
     private int ID, saldo;
-    private String nombre;
+    private String nombre, direccion;
     private ArrayList <Vehiculo> vehiculos = new ArrayList();
     private ArrayList <Cliente> clientes = new ArrayList();
 
     public Concesionaria() {
     }
 
-    public Concesionaria(int ID, int saldo, String nombre) {
+    public Concesionaria(int ID, int saldo, String nombre, String direccion) {
         this.ID = ID;
         this.saldo = saldo;
         this.nombre = nombre;
+        this.direccion = direccion;
     }
 
     public int getID() {
@@ -58,9 +59,17 @@ public class Concesionaria {
         this.clientes = clientes;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     @Override
     public String toString() {
-        return "Concesionaria{" + "ID=" + ID + ", saldo=" + saldo + ", nombre=" + nombre + ", vehiculos=" + vehiculos + ", clientes=" + clientes + '}';
+        return "Concesionaria{" + "ID=" + ID + ", saldo=" + saldo + ", nombre=" + nombre + ", direccion=" + direccion + ", vehiculos=" + vehiculos + ", clientes=" + clientes + '}';
     }
     
 }

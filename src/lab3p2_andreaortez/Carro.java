@@ -1,8 +1,6 @@
 
 package lab3p2_andreaortez;
 
-import java.awt.Color;
-
 public class Carro extends Vehiculo{
     private int puertas, velocidad;
     private String descripcion;
@@ -10,7 +8,7 @@ public class Carro extends Vehiculo{
     public Carro() {
     }
 
-    public Carro(int puertas, int velocidad, String descripcion, Color color, String marca, String modelo, int año, int cantidad, double precio) {
+    public Carro(int puertas, int velocidad, String descripcion, String color, String marca, String modelo, int año, int cantidad, double precio) {
         super(color, marca, modelo, año, cantidad, precio);
         this.puertas = puertas;
         this.velocidad = velocidad;

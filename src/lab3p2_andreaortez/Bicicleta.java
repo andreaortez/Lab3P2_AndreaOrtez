@@ -1,8 +1,6 @@
 
 package lab3p2_andreaortez;
 
-import java.awt.Color;
-
 public class Bicicleta extends Vehiculo{
     private String descripcion;
     private int radio;
@@ -11,7 +9,7 @@ public class Bicicleta extends Vehiculo{
     public Bicicleta() {
     }
 
-    public Bicicleta(String descripcion, int radio, String tipo, Color color, String marca, String modelo, int año, int cantidad, double precio) {
+    public Bicicleta(String descripcion, int radio, String tipo, String color, String marca, String modelo, int año, int cantidad, double precio) {
         super(color, marca, modelo, año, cantidad, precio);
         this.descripcion = descripcion;
         this.radio = radio;

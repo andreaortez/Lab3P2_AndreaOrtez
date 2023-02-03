@@ -1,7 +1,5 @@
 package lab3p2_andreaortez;
 
-import java.awt.Color;
-
 public class Bus extends Vehiculo{
 
     private int pasajeros;
@@ -10,7 +8,7 @@ public class Bus extends Vehiculo{
     public Bus() {
     }
 
-    public Bus(int pasajeros , Color color, String marca, String modelo, int año, int cantidad, double precio) {
+    public Bus(int pasajeros , String color, String marca, String modelo, int año, int cantidad, double precio) {
         super(color, marca, modelo, año, cantidad, precio);
         this.pasajeros = pasajeros;
         if (pasajeros > 50) {

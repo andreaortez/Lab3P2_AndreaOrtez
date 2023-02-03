@@ -1,10 +1,9 @@
 
 package lab3p2_andreaortez;
 
-import java.awt.Color;
 
 public class Vehiculo {
-    protected Color color;
+    protected String color;
     protected String marca, modelo;
     protected int año, cantidad;
     protected double precio;
@@ -12,7 +11,7 @@ public class Vehiculo {
     public Vehiculo() {
     }
     
-    public Vehiculo(Color color, String marca, String modelo, int año, int cantidad, double precio) {
+    public Vehiculo(String color, String marca, String modelo, int año, int cantidad, double precio) {
         this.color = color;
         this.marca = marca;
         this.modelo = modelo;
@@ -21,11 +20,11 @@ public class Vehiculo {
         this.precio = precio;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
