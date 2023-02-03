@@ -88,8 +88,13 @@ public class Lab3P2_AndreaOrtez {
 
                         switch (op) {
                             case 1://Agregar
-                                vehiculos.add(newV());
+                                Vehiculo v = newV();
+                                vehiculos.add(v);
                                 System.out.println("¡VEHICULO CREADO CON ÉXITO!\n");
+                                ListarConcesionarios();
+                                System.out.print("Ingrese posición de la concesionaria para agregar el carro: ");
+                                int pos = sc.nextInt();
+                                concesionaria.get(pos).getVehiculos().add(v);
                                 break;
                             case 2://Listar
                                 Listar();
@@ -212,16 +217,16 @@ public class Lab3P2_AndreaOrtez {
                                                         ((Bicicleta) vehiculos.get(p)).setRadio(n);
                                                     }
                                                     case 2: {
-                                                       String tipo="";
+                                                        String tipo = "";
                                                         System.out.print("\n1-> BMX\n" + "2-> De calle\n" + "Ingrese su opcion: ");
                                                         int n = sc.nextInt();
-                                                        
+
                                                         if (n == 1) {
                                                             tipo = "BMX";
                                                         } else if (n == 2) {
                                                             tipo = "De calle";
                                                         }
-                                                                
+
                                                         ((Bicicleta) vehiculos.get(p)).setTipo(tipo);
                                                     }
                                                 }
@@ -230,7 +235,7 @@ public class Lab3P2_AndreaOrtez {
                                 } else {
                                     System.out.println("La posición dada no es válida\n");
                                 }
-
+                                break;
                             case 4://Borrar
                                 System.out.print("Ingrese posición a modificar: ");
                                 p = sc.nextInt();
@@ -241,8 +246,31 @@ public class Lab3P2_AndreaOrtez {
                                     System.out.println("La posición dada no es válida\n");
                                 }
                         }
-
                         break;
+                    case 4://Compra/Venta de vehículos por parte de un cliente
+                        System.out.print("\n1-> Comprar\n" + "2-> Vender\n" + "Ingrese su opcion: ");
+                        op = sc.nextInt();
+
+                        switch (op) {
+                            case 1:
+                                ListarConcesionarios();
+
+                                System.out.println("Ingrese posición de la concesionaria: ");
+                                int pos = sc.nextInt();
+                                String s = "";
+
+                                for (Vehiculo t : concesionaria.get(pos).getVehiculos()) {
+                                    if (t instanceof Carro) {
+                                        s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
+                                        System.out.println(s);
+                                    }
+                                }
+
+                                ListarClientes();
+                                System.out.print("Ingrese posición del cliente en cuestión: ");
+                                int c = sc.nextInt();
+
+                        }
                 }
 
             }
@@ -438,6 +466,22 @@ public class Lab3P2_AndreaOrtez {
                     s += "\n" + vehiculos.indexOf(t) + " - " + t + "\n";
                 }
             }
+            System.out.println(s);
+        }
+    }
+
+    static void ListarClientes() {
+        String s = "";
+        for (Object t : clientes) {
+            s += "\n" + clientes.indexOf(t) + " - " + t + "\n";
+            System.out.println(s);
+        }
+    }
+
+    static void ListarConcesionarios() {
+        String s = "";
+        for (Object t : concesionaria) {
+            s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
             System.out.println(s);
         }
     }
