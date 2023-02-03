@@ -263,7 +263,7 @@ public class Lab3P2_AndreaOrtez {
                                     System.out.println(s);
                                 }
 
-                                System.out.println("Ingrese la posición del vehículo que quiere comprar: ");
+                                System.out.print("Ingrese la posición del vehículo que quiere comprar: ");
                                 int carro = sc.nextInt();
 
                                 if (carro < concesionaria.size()) {
@@ -278,6 +278,7 @@ public class Lab3P2_AndreaOrtez {
                                             double saldot = clientes.get(c).getSaldo();
                                             saldot -= precio;
                                             clientes.get(c).setSaldo(saldot);//establecer nuevo saldo
+                                            double saldoconce = 
                                             concesionaria.get(pos).getVehiculos().get(carro).setPrecio(precio);//agregar saldo a la concesionaria
                                             concesionaria.get(pos).getClientes().add(clientes.get(c));//Agregar cliente a la concesionaria
                                         } else {
@@ -293,18 +294,44 @@ public class Lab3P2_AndreaOrtez {
                                 int c = sc.nextInt();
 
                                 s = "";
-                                if (c<clientes.size()) {
+                                if (c < clientes.size()) {
                                     for (Vehiculo t : clientes.get(c).getVehiculos()) {
-                                    s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
-                                    System.out.println(s);
+                                        s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
+                                        System.out.println(s);
+                                    }
+
+                                    System.out.print("Ingrese la posición del vehículo que quiere vender: ");
+                                    carro = sc.nextInt();
+
+                                    if (carro < clientes.get(c).getVehiculos().size()) {
+                                        ListarConcesionarios();
+                                        System.out.print("Ingrese la posición de la concesionaria a la que se le venderá el vehículo: ");
+                                        pos = sc.nextInt();
+
+                                        double precio = (clientes.get(c).getVehiculos().get(carro).getPrecio());
+                                        
+                                        if (concesionaria.get(pos).getSaldo()<=precio) {
+                                            double saldo = concesionaria.get(pos).getSaldo();
+                                            saldo-=precio;
+                                            concesionaria.get(pos).setSaldo(saldo);
+                                            
+                                            double saldoclientes = clientes.get(c).getSaldo();
+                                            saldoclientes+=precio;
+                                            clientes.get(c).setSaldo(saldoclientes);
+                                        }
+                                    
+                                        
                                 }
-                                }
+
                         }
                 }
-
             }
 
-        } while (opcion != 5);
+        }
+
+    }
+    while (opcion 
+!= 5);
     }
 
     static Concesionaria newC() {
