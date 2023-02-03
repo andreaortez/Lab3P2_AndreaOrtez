@@ -1,16 +1,14 @@
-
 package lab3p2_andreaortez;
 
-
 public class Vehiculo {
-    protected String color;
-    protected String marca, modelo;
+
+    protected String color, marca, modelo;
     protected int año, cantidad;
     protected double precio;
 
     public Vehiculo() {
     }
-    
+
     public Vehiculo(String color, String marca, String modelo, int año, int cantidad, double precio) {
         this.color = color;
         this.marca = marca;
@@ -72,5 +70,5 @@ public class Vehiculo {
     public String toString() {
         return "Vehiculo{" + "color=" + color + ", marca=" + marca + ", modelo=" + modelo + ", a\u00f1o=" + año + ", cantidad=" + cantidad + ", precio=" + precio + '}';
     }
-    
+
 }

@@ -8,7 +8,7 @@ public class Lab3P2_AndreaOrtez {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Concesionaria> concesionaria = new ArrayList();
     static ArrayList<Cliente> clientes = new ArrayList();
-    static ArrayList<Vehiculo> vehiculos = new ArrayList();
+    static ArrayList vehiculos = new ArrayList();
 
     public static void main(String[] args) {
         int opcion;
@@ -68,7 +68,38 @@ public class Lab3P2_AndreaOrtez {
                                         s += "\n" + clientes.indexOf(t) + " - " + t + "\n";
                                         System.out.println(s);
                                     }
-                                }else {
+                                } else {
+                                    System.out.println("La posición dada no es válida\n");
+                                }
+                            case 3://Borrar
+                                System.out.print("Ingrese posición a modificar: ");
+                                int p = sc.nextInt();
+
+                                if (p >= 0 && p < clientes.size()) {
+                                    clientes.remove(p);
+                                } else {
+                                    System.out.println("La posición dada no es válida\n");
+                                }
+                        }
+                        break;
+                    case 3:
+                        System.out.print("\n1-> Crear\n" + "2-> Listar\n" + "3-> Borrar\n" + "Ingrese su opcion: ");
+                        op = sc.nextInt();
+
+                        switch (op) {
+                            case 1://Agregar
+                                clientes.add(newCl());
+                                System.out.println("¡CLIENTE CREADO CON ÉXITO!\n");
+                                break;
+                            case 2://Listar
+                                String s = "";
+
+                                if (op >= 0 && op < clientes.size()) {
+                                    for (Cliente t : clientes) {
+                                        s += "\n" + clientes.indexOf(t) + " - " + t + "\n";
+                                        System.out.println(s);
+                                    }
+                                } else {
                                     System.out.println("La posición dada no es válida\n");
                                 }
                             case 3://Borrar
@@ -83,7 +114,6 @@ public class Lab3P2_AndreaOrtez {
                         }
 
                         break;
-                    case 3:
                 }
 
             }
@@ -92,8 +122,8 @@ public class Lab3P2_AndreaOrtez {
     }
 
     static Concesionaria newC() {
-        System.out.println("Saldo: ");
-        int saldo = sc.nextInt();
+        System.out.print("Saldo: ");
+        double saldo = sc.nextInt();
         System.out.print("Nombre: ");
         sc = new Scanner(System.in);
         String name = sc.nextLine();
@@ -105,16 +135,98 @@ public class Lab3P2_AndreaOrtez {
     }
 
     static Cliente newCl() {
-        System.out.println("Saldo: ");
-        int saldo = sc.nextInt();
+        System.out.print("Saldo: ");
+        double saldo = sc.nextInt();
         System.out.print("Nombre: ");
         sc = new Scanner(System.in);
         String name = sc.nextLine();
-        Cliente cl = new Cliente(clientes.size() + 1, saldo, name);
+        Cliente cl = new Cliente(clientes.size() + 1, name, saldo);
         return cl;
     }
 
     static Vehiculo newV() {
+        String tipo = "";
+        System.out.print("Color: ");
+        String color = sc.next();
+        System.out.print("Marca: ");
+        String marca = sc.next();
+        System.out.print("Modelo: ");
+        String modelo = sc.next();
+        System.out.print("Año de fabricación: ");
+        int año = sc.nextInt();
+        System.out.print("Cantidad de llantas: ");
+        int cantll = sc.nextInt();
+        System.out.print("Precio: ");
+        double precio = sc.nextInt();
 
+        if (cantll == 2) {
+            System.out.print("\n1-> Motocicleta\n" + "2-> Bicicleta\n" + "Ingrese su opcion: ");
+            int p = sc.nextInt();
+            switch (p) {
+                case 1:
+                    boolean b = true;
+                    System.out.print("Desplazamiento del motor: ");
+                    sc = new Scanner(System.in);
+                    String desplazamiento = sc.nextLine();
+                    System.out.print("¿La motocicleta es eléctrica? [n/s]: ");
+                    char resp = sc.next().charAt(0);
+                    if (resp == 'n' || resp == 'N') {
+                        b = false;
+                    }
+                    Motocicleta m = new Motocicleta(desplazamiento, b, color, marca, modelo, año, cantll, precio);
+                    return m;
+                case 2:
+                    System.out.print("Descripción: ");
+                    sc = new Scanner(System.in);
+                    String descripcion = sc.nextLine();
+                    System.out.print("Radio de la rueda: ");
+                    int radio = sc.nextInt();
+                    System.out.print("\n1-> BMX\n" + "2-> De calle\n" + "Ingrese su opcion: ");
+                    int t = sc.nextInt();
+                    if (t == 1) {
+                        tipo = "BMX";
+                    } else if (t == 2) {
+                        tipo = "De calle";
+                    }
+                    Bicicleta bici = new Bicicleta(descripcion, radio, tipo, color, marca, modelo, año, cantll, precio);
+                    return bici;
+            }
+        } else if (cantll == 4) {
+            System.out.print("\n1-> Carro\n" + "2-> Camion de carga\n" + "3-> Bus\n" + "Ingrese su opcion: ");
+            int p = sc.nextInt();
+            switch (p) {
+                case 1:
+                    System.out.print("Cantidad de puertas: ");
+                    int cant1 = sc.nextInt();
+                    System.out.print("Descripción de motor: ");
+                    sc = new Scanner(System.in);
+                    String descripcion = sc.nextLine();
+                    System.out.print("Velocidad máxima: ");
+                    int velocidad = sc.nextInt();
+                    Carro car = new Carro(cant1, velocidad, descripcion, color, marca, modelo, año, cantll, precio);
+                    return car;
+                case 2:
+                    boolean b = true;
+                    System.out.println("Volumen: ");
+                    int volumen = sc.nextInt();
+                    System.out.println("Máximo de carga: ");
+                    int carga = sc.nextInt();
+                    System.out.println("Altura");
+                    int altura = sc.nextInt();
+                    System.out.print("¿El camión tiene retroexcavadora? [n/s]: ");
+                    char resp = sc.next().charAt(0);
+                    if (resp == 'n' || resp == 'N') {
+                        b = false;
+                    }
+                    Camion c = new Camion(volumen, carga, altura, b, color, marca, modelo, año, cantll, precio);
+                    return c;
+                case 3:
+                    System.out.println("Cantidad de pasajeros: ");
+                    int pasajeros = sc.nextInt();
+                    Bus bus = new Bus(pasajeros, color, marca, modelo, año, cantll, precio);
+                    return bus;
+            }
+        }
+        return new Vehiculo();
     }
 }

@@ -1,18 +1,19 @@
-
 package lab3p2_andreaortez;
 
 import java.util.ArrayList;
 
 public class Concesionaria {
-    private int ID, saldo;
+
+    private int ID;
+    private double saldo;
     private String nombre, direccion;
-    private ArrayList <Vehiculo> vehiculos = new ArrayList();
-    private ArrayList <Cliente> clientes = new ArrayList();
+    private ArrayList<Vehiculo> vehiculos = new ArrayList();
+    private ArrayList<Cliente> clientes = new ArrayList();
 
     public Concesionaria() {
     }
 
-    public Concesionaria(int ID, int saldo, String nombre, String direccion) {
+    public Concesionaria(int ID, double saldo, String nombre, String direccion) {
         this.ID = ID;
         this.saldo = saldo;
         this.nombre = nombre;
@@ -27,11 +28,11 @@ public class Concesionaria {
         this.ID = ID;
     }
 
-    public int getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
@@ -71,5 +72,5 @@ public class Concesionaria {
     public String toString() {
         return "Concesionaria{" + "ID=" + ID + ", saldo=" + saldo + ", nombre=" + nombre + ", direccion=" + direccion + ", vehiculos=" + vehiculos + ", clientes=" + clientes + '}';
     }
-    
+
 }
