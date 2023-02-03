@@ -253,6 +253,8 @@ public class Lab3P2_AndreaOrtez {
 
                         switch (op) {
                             case 1:
+                                boolean a = false;
+
                                 ListarConcesionarios();
 
                                 System.out.println("Ingrese posición de la concesionaria: ");
@@ -266,10 +268,27 @@ public class Lab3P2_AndreaOrtez {
                                     }
                                 }
 
+                                System.out.println("Ingrese la posición del carro que quiere comprar: ");
+                                int carro = sc.nextInt();
+
+                                if (concesionaria.get(pos).getVehiculos().get(carro) instanceof Carro) {
+                                    a = true;
+                                } else if (false) {
+                                    System.out.println("La posición no es válida");
+                                }
+
                                 ListarClientes();
                                 System.out.print("Ingrese posición del cliente en cuestión: ");
                                 int c = sc.nextInt();
+                                
+                                double precio = (concesionaria.get(pos).getVehiculos().get(carro).getPrecio())*107.5;//precio a pagar
 
+                                if (clientes.get(c).getSaldo() <= precio) {
+                                    double saldot = clientes.get(c).getSaldo();
+                                    saldot-=precio;
+                                    clientes.get(c).setSaldo(saldot);//establecer nuevo saldo
+                                    concesionaria.get(pos).getVehiculos().get(carro).setPrecio(precio);//agregar saldo a la concesionaria
+                                }
                         }
                 }
 
