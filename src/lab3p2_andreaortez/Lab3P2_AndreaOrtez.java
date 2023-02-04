@@ -14,42 +14,52 @@ public class Lab3P2_AndreaOrtez {
         int opcion;
 
         do {
-            System.out.print("-- MENU --\n" + "1-> CRUD Concesionaria\n" + "2-> CRUD Clientes\n" + "3->CRUD Vehículos\n"
-                    + "4->Compra/Venta de vehículos por parte de un cliente\n" + "5-> Salir\n" + "Ingrese su opcion: ");
+            System.out.print("-- MENU --\n" + "1-> CRUD Concesionaria\n" + "2-> CRUD Clientes\n" + "3-> CRUD Vehículos\n"
+                    + "4-> Compra/Venta de vehículos por parte de un cliente\n" + "5-> Salir\n" + "Ingrese su opcion: ");
             opcion = sc.nextInt();
 
             if (opcion == 1 && concesionaria.size() >= 0) {
+
                 System.out.print("\n1-> Crear\n" + "2-> Modificar\n" + "3-> Borrar\n" + "Ingrese su opcion: ");
                 int op = sc.nextInt();
+
                 switch (op) {
                     case 1:
                         concesionaria.add(newC());
                         System.out.println("¡CONCESIONARIA CREADA CON ÉXITO!\n");
                         break;
                     case 2:
-                        System.out.print("Ingrese posición a modificar: ");
-                        int p = sc.nextInt();
+                        if (!concesionaria.isEmpty()) {
+                            System.out.print("Ingrese posición a modificar: ");
+                            int p = sc.nextInt();
 
-                        if (p >= 0 && p < concesionaria.size()) {
-                            System.out.print("Ingrese nueva direccion: ");
-                            sc = new Scanner(System.in);
-                            String direccion = sc.nextLine();
-                            concesionaria.get(p).setDireccion(direccion);
+                            if (p >= 0 && p < concesionaria.size()) {
+                                System.out.print("Ingrese nueva direccion: ");
+                                sc = new Scanner(System.in);
+                                String direccion = sc.nextLine();
+                                concesionaria.get(p).setDireccion(direccion);
+                            } else {
+                                System.out.println("La posición dada no es válida\n");
+                            }
                         } else {
-                            System.out.println("La posición dada no es válida\n");
+                            System.out.println("No puede modificar si no hay ninguna concesionaria agregada\n");
                         }
                         break;
                     case 3:
-                        System.out.print("Ingrese posición a modificar: ");
-                        p = sc.nextInt();
+                        if (!concesionaria.isEmpty()) {
+                            System.out.print("Ingrese posición a modificar: ");
+                            int p = sc.nextInt();
 
-                        if (p >= 0 && p < concesionaria.size()) {
-                            concesionaria.remove(p);
+                            if (p >= 0 && p < concesionaria.size()) {
+                                concesionaria.remove(p);
+                            } else {
+                                System.out.println("La posición dada no es válida\n");
+                            }
                         } else {
-                            System.out.println("La posición dada no es válida\n");
+                            System.out.println("No puede eliminar si no hay ninguna concesionaria agregada\n");
                         }
                 }
-            } else {
+            } else if (concesionaria.size() > 0) {
                 switch (opcion) {
                     case 2://Clientes
                         System.out.print("\n1-> Crear\n" + "2-> Listar\n" + "3-> Borrar\n" + "Ingrese su opcion: ");
@@ -61,16 +71,8 @@ public class Lab3P2_AndreaOrtez {
                                 System.out.println("¡CLIENTE CREADO CON ÉXITO!\n");
                                 break;
                             case 2://Listar
-                                String s = "";
-
-                                if (op >= 0 && op < clientes.size()) {
-                                    for (Cliente t : clientes) {
-                                        s += "\n" + clientes.indexOf(t) + " - " + t + "\n";
-                                        System.out.println(s);
-                                    }
-                                } else {
-                                    System.out.println("La posición dada no es válida\n");
-                                }
+                                ListarClientes();
+                                break;
                             case 3://Borrar
                                 System.out.print("Ingrese posición a modificar: ");
                                 int p = sc.nextInt();
@@ -90,11 +92,11 @@ public class Lab3P2_AndreaOrtez {
                             case 1://Agregar
                                 Vehiculo v = newV();
                                 vehiculos.add(v);
-                                System.out.println("¡VEHICULO CREADO CON ÉXITO!\n");
                                 ListarConcesionarios();
                                 System.out.print("Ingrese posición de la concesionaria para agregar el carro: ");
                                 int pos = sc.nextInt();
                                 concesionaria.get(pos).getVehiculos().add(v);
+                                System.out.println("\n¡VEHICULO CREADO CON ÉXITO!\n");
                                 break;
                             case 2://Listar
                                 Listar();
@@ -242,6 +244,7 @@ public class Lab3P2_AndreaOrtez {
 
                                 if (p >= 0 && p < vehiculos.size()) {
                                     vehiculos.remove(p);
+                                    System.out.println("¡VEHÍCULO ELIMINADO CON ÉXITO!\n");
                                 } else {
                                     System.out.println("La posición dada no es válida\n");
                                 }
@@ -252,9 +255,9 @@ public class Lab3P2_AndreaOrtez {
                         op = sc.nextInt();
 
                         switch (op) {
-                            case 1:
+                            case 1://COMPRAR
                                 ListarConcesionarios();
-                                System.out.println("Ingrese posición de la concesionaria: ");
+                                System.out.print("Ingrese posición de la concesionaria: ");
                                 int pos = sc.nextInt();
                                 String s = "";
 
@@ -271,24 +274,33 @@ public class Lab3P2_AndreaOrtez {
                                     System.out.print("Ingrese posición del cliente en cuestión: ");
                                     int c = sc.nextInt();
 
-                                    if (c < concesionaria.get(pos).getClientes().size()) {
-                                        double precio = (concesionaria.get(pos).getVehiculos().get(carro).getPrecio()) * 107.5;//precio a pagar
+                                    if (c < clientes.size()) {
+                                        double precio = (concesionaria.get(pos).getVehiculos().get(carro).getPrecio()) * 1.075;//precio a pagar
+                                        System.out.println(precio);
 
-                                        if (clientes.get(c).getSaldo() <= precio) {
+                                        if (clientes.get(c).getSaldo() >= precio) {
                                             double saldot = clientes.get(c).getSaldo();
                                             saldot -= precio;
                                             clientes.get(c).setSaldo(saldot);//establecer nuevo saldo
-                                            double saldoconce = 
-                                            concesionaria.get(pos).getVehiculos().get(carro).setPrecio(precio);//agregar saldo a la concesionaria
+
+                                            double saldoconce = concesionaria.get(pos).getVehiculos().get(carro).getPrecio();
+                                            saldoconce += precio;
+                                            concesionaria.get(pos).getVehiculos().get(carro).setPrecio(saldoconce);//agregar saldo a la concesionaria
                                             concesionaria.get(pos).getClientes().add(clientes.get(c));//Agregar cliente a la concesionaria
+
+                                            clientes.get(c).getVehiculos().add(concesionaria.get(pos).getVehiculos().get(carro));//agregar vehículo al cliente
+                                            concesionaria.get(pos).getVehiculos().remove(carro);//eliminar carro de concesionaria
+
+                                            System.out.println("\n!VEHÍCULO COMPRADO CON ÉXITO!\n");
                                         } else {
-                                            System.out.println("Lo siento, no posee con el saldo suficiente para realizar esta compra\n");
+                                            System.out.println("\nLo siento, no posee con el saldo suficiente para realizar esta compra\n");
                                         }
                                     }
                                 } else {
-                                    System.out.println("La posición no es válida");
+                                    System.out.println("La posición no es válida\n");
                                 }
-                            case 2:
+                                break;
+                            case 2://VENDER
                                 ListarClientes();
                                 System.out.print("Ingrese posición del cliente en cuestión: ");
                                 int c = sc.nextInt();
@@ -309,29 +321,36 @@ public class Lab3P2_AndreaOrtez {
                                         pos = sc.nextInt();
 
                                         double precio = (clientes.get(c).getVehiculos().get(carro).getPrecio());
-                                        
-                                        if (concesionaria.get(pos).getSaldo()<=precio) {
-                                            double saldo = concesionaria.get(pos).getSaldo();
-                                            saldo-=precio;
-                                            concesionaria.get(pos).setSaldo(saldo);
-                                            
-                                            double saldoclientes = clientes.get(c).getSaldo();
-                                            saldoclientes+=precio;
-                                            clientes.get(c).setSaldo(saldoclientes);
-                                        }
-                                    
-                                        
-                                }
 
+                                        if (concesionaria.get(pos).getSaldo() >= precio) {
+                                            double saldo = concesionaria.get(pos).getSaldo();
+                                            saldo -= precio;
+                                            concesionaria.get(pos).setSaldo(saldo);
+
+                                            double saldoclientes = clientes.get(c).getSaldo();
+                                            saldoclientes += precio;
+                                            clientes.get(c).setSaldo(saldoclientes);
+
+                                            concesionaria.get(pos).getVehiculos().add(clientes.get(c).getVehiculos().get(carro));//agregar vehículo a la consecionaria
+                                            clientes.get(c).getVehiculos().remove(carro);//eliminar carro del cliente
+
+                                            System.out.println("!VEHÍCULO COMPRADO CON ÉXITO!\n");
+                                        } else {
+                                            System.out.println("Saldo insuficiente\n");
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("La posición no es válida\n");
+                                }
+                                break;
                         }
                 }
+            } else {
+                System.out.println("No hay ninguna concesionaria agregada\n");
             }
 
-        }
-
-    }
-    while (opcion 
-!= 5);
+        } while (opcion
+                != 5);
     }
 
     static Concesionaria newC() {
@@ -420,11 +439,11 @@ public class Lab3P2_AndreaOrtez {
                     return car;
                 case 2://CAMION
                     boolean b = true;
-                    System.out.println("Volumen: ");
+                    System.out.print("Volumen: ");
                     int volumen = sc.nextInt();
-                    System.out.println("Máximo de carga: ");
+                    System.out.print("Máximo de carga: ");
                     int carga = sc.nextInt();
-                    System.out.println("Altura");
+                    System.out.print("Altura: ");
                     int altura = sc.nextInt();
                     System.out.print("¿El camión tiene retroexcavadora? [n/s]: ");
                     char resp = sc.next().charAt(0);
@@ -530,15 +549,15 @@ public class Lab3P2_AndreaOrtez {
         String s = "";
         for (Object t : clientes) {
             s += "\n" + clientes.indexOf(t) + " - " + t + "\n";
-            System.out.println(s);
         }
+        System.out.println(s);
     }
 
     static void ListarConcesionarios() {
         String s = "";
         for (Object t : concesionaria) {
             s += "\n" + concesionaria.indexOf(t) + " - " + t + "\n";
-            System.out.println(s);
         }
+        System.out.println(s);
     }
 }
