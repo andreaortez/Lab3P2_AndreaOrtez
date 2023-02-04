@@ -171,10 +171,19 @@ public class Lab3P2_AndreaOrtez {
                                             }
                                         case 3://BUS
                                             if (vehiculos.get(p) instanceof Bus) {
+                                                String tipo="";
+                                                
                                                 System.out.print("Ingrese la cantidad de pasajeros: ");
-
                                                 int n = sc.nextInt();
                                                 ((Bus) vehiculos.get(p)).setPasajeros(n);
+
+                                                if (n > 50) {
+                                                    tipo = "De Ruta";
+                                                } else {
+                                                    tipo = "Rapidito";
+                                                }
+                                                ((Bus) vehiculos.get(p)).setTipo(tipo);
+
                                             }
                                         case 4://MOTO
                                             if (vehiculos.get(p) instanceof Motocicleta) {
@@ -233,6 +242,7 @@ public class Lab3P2_AndreaOrtez {
                                                     }
                                                 }
                                             }
+                                            System.out.println("\n¡VEHÍCULO MODIFICADO CON ÉXITO!\n");
                                     }
                                 } else {
                                     System.out.println("La posición dada no es válida\n");
@@ -453,7 +463,7 @@ public class Lab3P2_AndreaOrtez {
                     Camion c = new Camion(volumen, carga, altura, b, color, marca, modelo, año, cantll, precio);
                     return c;
                 case 3://BUS
-                    System.out.println("Cantidad de pasajeros: ");
+                    System.out.print("Cantidad de pasajeros: ");
                     int pasajeros = sc.nextInt();
                     Bus bus = new Bus(pasajeros, color, marca, modelo, año, cantll, precio);
                     return bus;
